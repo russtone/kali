@@ -12,13 +12,6 @@ RUN apt-get install -y \
   sed \
   locales
 
-RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
-  locale-gen
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-ENV TERM screen-256color
-
 # Tools
 # RUN apt-get install -y \
 #   nmap \
@@ -28,14 +21,24 @@ ENV TERM screen-256color
 #   hashcat \
 #   john
 
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+  locale-gen
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+ENV TERM screen-256color
+
+WORKDIR /root
+
 # dotfiles
-RUN git clone https://github.com/russtone/dotfiles ~/.config
+RUN git clone https://github.com/russtone/dotfiles .config
 
 # zsh
-RUN ln -s ~/.config/zsh/zshenv ~/.zshenv && \
-  rm ~/.zshrc && ln -s ~/.config/zsh/zshrc ~/.zshrc
+RUN ln -s .config/zsh/zshenv .zshenv && \
+  rm .zshrc && ln -s .config/zsh/zshrc .zshrc
 RUN zsh -csi 'zplug install'
 COPY prompt.zsh /root
-RUN echo 'source ~/prompt.zsh' >> ~/.zshrc
+RUN echo 'source $HOME/prompt.zsh' >> ~/.zshrc
 
 ENTRYPOINT ["/usr/bin/zsh"]
