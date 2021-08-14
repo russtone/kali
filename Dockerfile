@@ -50,7 +50,7 @@ RUN patch ~/.zplug/base/core/add.zsh /tmp/zplug-pipe-fix.patch
 RUN zsh -ic 'ZPLUG_PIPE_FIX=true zplug install'
 
 # modified prompt
-COPY .prompt /root
+COPY prompt.zsh /root/.prompt
 RUN echo 'source $HOME/.prompt' >> ~/.zshrc
 
 ENTRYPOINT ["/usr/bin/zsh"]
