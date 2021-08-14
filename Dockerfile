@@ -37,7 +37,10 @@ RUN git clone https://github.com/russtone/dotfiles .config
 # zsh
 RUN ln -s .config/zsh/zshenv .zshenv && \
   rm .zshrc && ln -s .config/zsh/zshrc .zshrc
-RUN zsh -csi 'zplug install'
+COPY zplug-pipe-fix.patch /tmp
+RUN git clone https://github.com/zplug/zplug.git ~/.zplug
+RUN patch ~/.zplug/base/core/add.zsh /tmp/zplug-pipe-fix.patch
+RUN zsh -ic 'ZPLUG_PIPE_FIX=true zplug install'
 COPY prompt.zsh /root
 RUN echo 'source $HOME/prompt.zsh' >> ~/.zshrc
 
