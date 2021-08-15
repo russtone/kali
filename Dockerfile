@@ -42,12 +42,8 @@ RUN git clone https://github.com/russtone/dotfiles .config
 RUN ln -s .config/zsh/zshenv .zshenv && \
   rm .zshrc && ln -s .config/zsh/zshrc .zshrc
 
-# zplug
-# see: https://github.com/zplug/zplug/issues/272
-COPY zplug-pipe-fix.patch /tmp
-RUN git clone https://github.com/zplug/zplug.git ~/.zplug
-RUN patch ~/.zplug/base/core/add.zsh /tmp/zplug-pipe-fix.patch
-RUN zsh -ic 'ZPLUG_PIPE_FIX=true zplug install'
+# load plugins
+RUN zsh -ic 'whoami'
 
 # modified prompt
 COPY prompt.zsh /root/.prompt
