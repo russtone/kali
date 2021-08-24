@@ -10,7 +10,8 @@ RUN apt-get install -y \
   git \
   zsh \
   sed \
-  locales
+  locales \
+  net-tools
 
 # Tools
 RUN apt-get install -y \
@@ -20,7 +21,8 @@ RUN apt-get install -y \
   enum4linux \
   hashcat \
   john \
-  ruby ruby-dev
+  ruby ruby-dev \
+  impacket-scripts
 
 # Ruby-tools
 RUN gem install evil-winrm
