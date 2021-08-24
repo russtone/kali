@@ -23,7 +23,7 @@ RUN apt-get install -y \
   ruby ruby-dev
 
 # Ruby-tools
-gem install evim-winrm
+RUN gem install evim-winrm
 
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
   locale-gen

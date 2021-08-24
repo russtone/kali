@@ -2,8 +2,9 @@ name: Release
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
