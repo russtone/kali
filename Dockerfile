@@ -21,7 +21,7 @@ RUN apt-get install -y \
   enum4linux \
   ruby ruby-dev \
   impacket-scripts \
-  cme
+  crackmapexec
 
 # Ruby-tools
 RUN gem install evil-winrm
