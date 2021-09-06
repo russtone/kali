@@ -19,10 +19,9 @@ RUN apt-get install -y \
   masscan \
   smbmap \
   enum4linux \
-  hashcat \
-  john \
   ruby ruby-dev \
-  impacket-scripts
+  impacket-scripts \
+  cme
 
 # Ruby-tools
 RUN gem install evil-winrm
