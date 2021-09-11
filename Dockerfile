@@ -54,4 +54,5 @@ RUN zsh -ic 'whoami'
 COPY prompt.zsh /root/.prompt
 RUN echo 'source $HOME/.prompt' >> ~/.zshrc
 
+
 ENTRYPOINT ["/usr/bin/zsh"]
